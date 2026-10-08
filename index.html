@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f3f3">
+  <title>SICPES · Sketches de navegación</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" data-go="landing" aria-label="Ir al inicio">SICPES<span> / SKETCHES</span></a>
+    <div class="role-switch" role="tablist" aria-label="Seleccionar rol">
+      <button type="button" class="role-tab" data-role="student">Rol Estudiante</button>
+      <button type="button" class="role-tab" data-role="admin">Rol Administrador</button>
+    </div>
+    <div class="top-actions">
+      <button type="button" id="zonesToggle" class="quiet-button">Mostrar zonas clicables</button>
+      <button type="button" id="diagramToggle" class="dark-button">Ver diagrama</button>
+    </div>
+  </header>
+  <main class="workspace">
+    <section class="stage" aria-label="Prototipo móvil">
+      <div class="device-label"><span id="screenLabel">LANDING</span><span>390 × 844</span></div>
+      <div class="phone-holder"><div class="phone"><div class="phone-screen" id="phoneScreen" aria-live="polite"></div></div></div>
+      <div class="stage-footer"><button class="back-button" id="backButton" type="button">← Atrás</button><span id="roleCaption">ESTUDIANTE</span><span>WIREFRAME · V1.0</span></div>
+    </section>
+    <aside class="screen-panel" aria-label="Pantallas del rol"><div class="panel-heading"><span class="eyebrow">PRÁCTICA 07</span><h1>Pantallas del rol</h1><p>Selecciona una pantalla para abrirla.</p></div><div id="roleScreens" class="role-screens"></div></aside>
+    <aside class="navigation-panel" aria-label="Destinos de navegación"><section class="destinations"><h2>Desde aquí puedes ir a:</h2><div id="screenDestinations"></div></section><div class="panel-legend"><i></i> Acción principal</div><div id="screenCount" class="screen-count"></div></aside>
+  </main>
+  <section id="diagramView" class="diagram-view" aria-label="Diagrama de navegación" hidden>
+    <div class="diagram-heading"><div><span class="eyebrow">MAPA DE PANTALLAS</span><h2>Diagrama de navegación</h2><p>Selecciona una miniatura para abrir esa pantalla en el prototipo.</p></div><div class="diagram-actions"><button class="quiet-button" id="downloadDiagram" type="button">Descargar como imagen</button><button class="dark-button" type="button" data-close-diagram>Cerrar diagrama</button><button class="diagram-x" type="button" data-close-diagram aria-label="Cerrar diagrama">×</button></div></div>
+    <div class="diagram-canvas" id="diagramCanvas"></div>
+  </section>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
