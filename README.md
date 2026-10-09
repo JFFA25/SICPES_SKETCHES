@@ -12,7 +12,12 @@ Prototipo interactivo de sketches en HTML, CSS y JavaScript puros para la Práct
 
 ## Vizualizacion
 
+### Movil
 ![Sketches de SICPES](/sketches.png)
+
+### PWA
+
+![Sketches de SICPES](/pwa.png)
 
 ## Diagrama de Navegacion
 

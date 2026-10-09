@@ -9,21 +9,31 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pwa.css">
   <script src="app.js" defer></script>
+  <script src="pwa.js" defer></script>
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#" data-go="landing" aria-label="Ir al inicio">SICPES<span> / SKETCHES</span></a>
-    <div class="role-switch" role="tablist" aria-label="Seleccionar rol">
+    <div class="pwa-view-switch" role="tablist" aria-label="Sección del prototipo">
+      <button type="button" class="pwa-view-tab active" data-view="mobile">Sketches móviles</button>
+      <button type="button" class="pwa-view-tab" data-view="pwa">PWA</button>
+    </div>
+    <div class="role-switch" data-view-for="mobile" role="tablist" aria-label="Seleccionar rol">
       <button type="button" class="role-tab" data-role="student">Rol Estudiante</button>
       <button type="button" class="role-tab" data-role="admin">Rol Administrador</button>
     </div>
-    <div class="top-actions">
+    <div class="top-actions" data-view-for="mobile">
       <button type="button" id="zonesToggle" class="quiet-button">Mostrar zonas clicables</button>
       <button type="button" id="diagramToggle" class="dark-button">Ver diagrama</button>
     </div>
+    <div class="top-actions" data-view-for="pwa" hidden>
+      <button type="button" id="pwaZones" class="quiet-button">Mostrar zonas clicables</button>
+      <button type="button" id="pwaMap" class="dark-button">Ver mapa de navegación</button>
+    </div>
   </header>
-  <main class="workspace">
+  <main id="mobileView" class="workspace">
     <section class="stage" aria-label="Prototipo móvil">
       <div class="device-label"><span id="screenLabel">LANDING</span><span>390 × 844</span></div>
       <div class="phone-holder"><div class="phone"><div class="phone-screen" id="phoneScreen" aria-live="polite"></div></div></div>
@@ -37,5 +47,59 @@
     <div class="diagram-canvas" id="diagramCanvas"></div>
   </section>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <main id="pwaView" class="pwa-workspace" hidden aria-label="Prototipo PWA de escritorio">
+    <aside class="pwa-panel pwa-screen-panel" aria-label="Pantallas del rol PWA">
+      <div class="pwa-panel-heading">
+        <span class="pwa-eyebrow">SECCIÓN PWA · PRÁCTICA 07</span>
+        <h1>Pantallas del rol</h1>
+        <p>Selecciona una pantalla para abrirla en el marco web.</p>
+      </div>
+      <div class="pwa-role-switch pwa-role-switch-inline" role="tablist" aria-label="Seleccionar rol">
+        <button type="button" class="pwa-role-tab" data-pwa-role="student">Estudiante</button>
+        <button type="button" class="pwa-role-tab" data-pwa-role="admin">Administrador</button>
+      </div>
+      <div id="pwaScreenList" class="pwa-screen-list"></div>
+    </aside>
+
+    <section class="pwa-stage" aria-label="Prototipo de escritorio">
+      <div class="pwa-stage-label"><span id="pwaScreenLabel">LANDING</span><span>1440 × 900</span></div>
+      <div class="pwa-window" role="region" aria-label="Ventana del navegador">
+        <div class="pwa-window-bar">
+          <span class="pwa-dots"><i></i><i></i><i></i></span>
+          <span class="pwa-url">https://app.sicpes.mx<span id="pwaRoute"></span></span>
+          <span class="pwa-window-mini">◻ ◻</span>
+        </div>
+        <div class="pwa-window-screen" id="pwaScreen" aria-live="polite"></div>
+      </div>
+      <div class="pwa-stage-footer"><button class="pwa-back-button" id="pwaBack" type="button">← Atrás</button><span id="pwaRoleCaption">ESTUDIANTE</span><span>WIREFRAME WEB · V1.0</span></div>
+    </section>
+
+    <aside class="pwa-panel pwa-nav-panel" aria-label="Destinos de navegación PWA">
+      <section class="pwa-destinations">
+        <h2>Desde aquí puedes ir a:</h2>
+        <div id="pwaDestinations"></div>
+      </section>
+      <div class="pwa-legend"><i></i> Acción principal</div>
+      <div id="pwaScreenCount" class="pwa-screen-count"></div>
+    </aside>
+  </main>
+
+  <section id="pwaMapView" class="pwa-map-view" aria-label="Mapa de navegación PWA" hidden>
+    <div class="pwa-map-heading">
+      <div>
+        <span class="pwa-eyebrow">MAPA DE PANTALLAS · PWA</span>
+        <h2>Mapa de navegación de escritorio</h2>
+        <p>Selecciona una miniatura para abrir esa pantalla en el prototipo.</p>
+      </div>
+      <div class="pwa-map-actions">
+        <button class="pwa-quiet-button" type="button" data-pwa-close-map>Cerrar mapa</button>
+        <button class="pwa-map-x" type="button" data-pwa-close-map aria-label="Cerrar mapa">×</button>
+      </div>
+    </div>
+    <div class="pwa-map-canvas" id="pwaMapCanvas"></div>
+  </section>
+
+  <div class="pwa-toast" id="pwaToast" role="status" aria-live="polite"></div>
 </body>
 </html>
